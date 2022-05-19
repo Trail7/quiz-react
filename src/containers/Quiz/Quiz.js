@@ -75,11 +75,19 @@ export default class Quiz extends Component {
 
         } else {
             results[question.id] = 'error'
-            this.setState({
-                activeQuestion: this.state.activeQuestion + 1,
-                answerState: {[answerId]: 'error'},
-                results  //results: results
-            })
+            if (this.isQuizFinished()){
+                this.setState({
+                    answerState: {[answerId]: 'error'},
+                    results  //results: results
+                })
+            } else{
+                this.setState({
+                    activeQuestion: this.state.activeQuestion + 1,
+                    answerState: {[answerId]: 'error'},
+                    results  //results: results
+                })
+            }
+
         }
 
 
@@ -99,6 +107,7 @@ export default class Quiz extends Component {
     }
 
     render() {
+        console.log("%%%%",this.state.activeQuestion)
         return (
             <div className={classes.Quiz}>
                 <div className={classes.QuizWrapper}>
