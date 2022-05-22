@@ -106,6 +106,10 @@ export default class Quiz extends Component {
         })
     }
 
+    componentDidMount() {
+        // console.log('QuizId = ', this.props.match.params.id)
+    }
+
     render() {
         console.log("%%%%",this.state.activeQuestion)
         return (
