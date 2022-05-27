@@ -15,6 +15,7 @@ const validateEmail = (email) => {
 export default class Auth extends Component {
 
     state = {
+        isFormValid: false,
         formControls: {
             email: {
                 value: '',
@@ -59,13 +60,13 @@ export default class Auth extends Component {
         if (!validation) return true
         let isValid = true
 
-        if (validation.required){
+        if (validation.required) {
             isValid = value.trim() !== '' && isValid
         }
-        if (validation.email){
+        if (validation.email) {
             isValid = validateEmail(value) && isValid
         }
-        if (validation.minLength){
+        if (validation.minLength) {
             isValid = value.length >= validation.minLength && isValid
         }
 
@@ -81,8 +82,16 @@ export default class Auth extends Component {
         control.valid = this.validateControl(control.value, control.validation)
 
         formControls[controlName] = control
+
+        let isFormValid = true
+
+        Object.keys(formControls).forEach(name => {
+            isFormValid = formControls[name].valid && isFormValid
+        })
+
+
         this.setState({
-            formControls
+            formControls, isFormValid
         })
 
     }
@@ -116,18 +125,10 @@ export default class Auth extends Component {
 
                         {this.renderInputs()}
 
-                        {/*<Input*/}
-                        {/*    label='Email'*/}
-                        {/*/>*/}
-
-                        {/*<Input*/}
-                        {/*    label='Password'*/}
-                        {/*    errorMessage = 'test'*/}
-                        {/*/>*/}
-
                         <Button
                             type='success'
                             onClick={this.loginHandler}
+                            disabled={!this.state.isFormValid}
                         >
                             Sign in
                         </Button>
@@ -135,6 +136,7 @@ export default class Auth extends Component {
                         <Button
                             type='primary'
                             onClick={this.registerHandler}
+                            disabled={!this.state.isFormValid}
                         >
                             Sign up
                         </Button>

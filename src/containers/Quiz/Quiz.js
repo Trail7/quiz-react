@@ -12,25 +12,25 @@ export default class Quiz extends Component {
         answerState: null,
         quiz: [
             {
-                question: "2+2=?",
+                question: "Who painted the Mona Lisa?",
                 id: 1,
                 rightAnswerId: 3,
                 answers: [
-                    {text: '5', id: 1},
-                    {text: '3', id: 2},
-                    {text: '4', id: 3},
-                    {text: '8', id: 4},
+                    {text: 'Coco Chanel', id: 1},
+                    {text: 'Gareth Southgate', id: 2},
+                    {text: 'Leonardo da Vinci', id: 3},
+                    {text: 'Twitter', id: 4},
                 ]
             },
             {
-                question: "5*5=?",
+                question: "What does the AC button on a calculator stand for?",
                 id: 2,
                 rightAnswerId: 2,
                 answers: [
-                    {text: '35', id: 1},
-                    {text: '25', id: 2},
-                    {text: '43', id: 3},
-                    {text: '55', id: 4},
+                    {text: '1.6km', id: 1},
+                    {text: 'All clear', id: 2},
+                    {text: 'Eighteen', id: 3},
+                    {text: 'Air conditioning', id: 4},
                 ]
             }
         ]
