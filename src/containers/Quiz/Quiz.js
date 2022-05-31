@@ -90,7 +90,7 @@ class Quiz extends Component {
         // console.log('QuizId = ', this.props.match.params.id)
         try {
             // const response = await axios.get(`/quizes/-N3OiwlthVQ0dywEv9_p.json`)
-            const response = await axios.get(`/quizes/${this.props.match.params.id.json}`)
+            const response = await axios.get(`/quizes/${this.props.match.params.id}.json`)
 
             const quiz = response.data
 
