@@ -4,25 +4,19 @@ import Backdrop from "../../UI/Backdrop/Backdrop";
 import {NavLink} from "react-router-dom";
 
 
-const links = [
-    {to: '/', label: 'Quiz List', exact: true},
-    {to: '/auth', label: 'Authorization', exact: true},
-    {to: '/quiz-creator', label: 'Create new test', exact: true}
-]
-
 class Drawer extends Component {
-    clickHandler = () =>{
+    clickHandler = () => {
         this.props.onClose()
     }
 
-    renderLinks() {
+    renderLinks(links) {
         return links.map((link, index) => {
             return (
                 <li key={index}>
                     <NavLink to={link.to}
                              exact={`${link.exact}`}
                              className={({isActive}) => (isActive ? classes.active : 'none')}
-                             // activeClassName={classes.active}
+                        // activeClassName={classes.active}
                              onClick={this.clickHandler}
                     >{link.label}</NavLink>
                 </li>
@@ -38,11 +32,29 @@ class Drawer extends Component {
         if (!this.props.isOpen) {
             cls.push(classes.close)
         }
+
+        const links = [
+            {to: '/', label: 'Quiz List', exact: true}
+        ]
+
+        if (this.props.isAuthenticated) {
+            links.push(
+                {to: '/quiz-creator', label: 'Create new test', exact: true},
+                {to: '/logout', label: 'Log out', exact: true}
+            )
+        } else {
+            links.push(
+                {to: '/auth', label: 'Authorization', exact: true}
+            )
+
+
+        }
+
         return (
             <React.Fragment>
                 <nav className={cls.join(' ')}>
                     <ul>
-                        {this.renderLinks()}
+                        {this.renderLinks(links)}
                     </ul>
                 </nav>
                 {this.props.isOpen ? <Backdrop onClick={this.props.onClose}/> : null}
