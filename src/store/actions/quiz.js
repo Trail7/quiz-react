@@ -14,7 +14,6 @@ export function fetchQuizzes() {
         dispatch(fetchQuizzesStart())
         try {
             const response = await axios.get('/quizes.json')
-            // console.log(response.data)
             const quizzes = []
             Object.keys(response.data).forEach((key, index) => {
                 quizzes.push({
@@ -127,17 +126,8 @@ export function quizAnswerClick(answerId) {
 
         } else {
             results[question.id] = 'error'
-            if (this.isQuizFinished()) {
-                dispatch(quizSetState({[answerId]: 'error'}, results))
+            dispatch(quizSetState({[answerId]: 'error'}, results))
 
-            } else {
-
-                // this.setState({
-                //     activeQuestion: this.state.activeQuestion + 1,
-                //     answerState: {[answerId]: 'error'},
-                //     results
-                // })
-            }
         }
     }
 
